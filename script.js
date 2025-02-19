@@ -12,13 +12,22 @@
 } 
 
 // Replacing rendered HTML Content for Js
-
+// equivalent id & classes from tutorial
+// class: card-container = jackets_content
+//
 const displayContainer = document.getElementById('display-container');
 console.log(displayContainer); // The result is null because we didn't fetch the elements yet.
 
-function main () {
-    console.log('mains is working');
+function displayCards () {
+     for (let i = 0; i < data.length; i++) {
+        console.log(data[i]);
+     }
 }
+
+function main () {
+    
+}
+
 //
 
 
