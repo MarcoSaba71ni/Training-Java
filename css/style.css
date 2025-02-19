@@ -1,105 +1,311 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    text-align: center;
-  }
-  
-  /* Header */
-  header {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-  }
-  
-  /* Loader Animation */
-  .loader {
-    display: none;
-    margin: 20px auto;
-    border: 6px solid #f3f3f3;
-    border-top: 6px solid #3498db;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* Product List */
-  .product-list {
+@font-face {
+    font-family: "Redwing";
+    src: url("../fonts/Redwing-Light.otf") format("truetype");
+}
+
+h1 ,
+h2 , 
+p {
+    font-family: "Redwing";
+
+}
+
+header {
     display: flex;
+    align-items: center;
+    text-size-adjust: 20px;
+    width: 100%;
+    justify-content: space-evenly;
     flex-wrap: wrap;
+}
+
+header,
+ footer {
+    background-color: #0D6868;
+    color: white;
+}
+
+header a, 
+footer a {
+  color: #fff;
+  padding: 5px;
+  border-color: rgb(228, 183, 183);
+  border-radius: 5px; 
+}
+
+nav a {
+    display: inline-block;
+}
+
+#hamburguer-menu:checked ~ nav {
+    display: inline-block;
+}
+
+.searchBar {
     justify-content: center;
-    margin: 20px;
-  }
-  
-  .product-item {
-    background: white;
-    padding: 15px;
-    margin: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200px;
     text-align: center;
-    cursor: pointer;
-  }
-  
-  /* Shopping Cart */
-  .shopping-cart {
-    background-color: white;
-    padding: 20px;
-    margin-top: 50px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  #cart-items {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  #cart-items li {
-    background: #ddd;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 4px;
-  }
-  
-  /* No More Items Button */
-  .no-more-items {
-    display: none;
-    position: fixed;
-    bottom: 20px;
+}
+
+.searchBar input[type=text] {
+  border-radius: 5%;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+  color: black;
+  background-color: lightgray;
+  padding-left: 10 ;
+}
+
+.header_icons {
+    display: flex;
+    gap: 15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.active {
+    text-decoration: underline;
+}
+
+.cta {
+    background-color: #0D6868;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    background: red;
+    transform: translate(-50%, -50%);
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.cta:hover {
+    background: #c4c4c4;
+    color: #0D6868;
+    padding: 12px;
+    transition-duration: 0.5s;
+    font-weight: bold;
+}
+
+.cta_product-one {
+    background-color: #0D6868;
+    color: whitesmoke;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.cta_product-one:hover {
+    background-color: #c4c4c4;
+    color: #0D6868;
+    padding: 12px;
+    transition-duration: 0.5s;
+    font-weight: bold;
+}
+
+footer {
+    padding: 50px 0px 50px 0px;
+    display: flex;
+    flex: 1;
+    padding-left: 10%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.footer_links {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+}
+
+.image_logo {
+    width: 80px;
+    height: auto;
+    filter: brightness(450%);
+}
+
+.image_logo2 {
+    width: 300px;
+    height: auto;
+    filter: brightness(350%);
+}
+
+.product-one_image {
+    width: 250px;
+    height: 305px;
+
+}
+
+.push-zone {
+    background: url("../images/OrlandoBloom-welcomepage.jpg") center no-repeat;
+    background-size: cover;
+    min-height: 80vh;
+    position: relative;
     color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* Scroll-to-Top Button */
-  .scroll-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #333;
+    font-family: "Redwing";
+}
+
+.push-zone_content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.overcome-limitation {
+    background-image: url("../images/Girl-in-the-rain.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    min-height: 80vh;
+    padding-top: 10px;
+    position: relative; 
     color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-  }
-  
-  .scroll-to-top:hover {
-    background-color: #555;
-  }
-  
+    text-align: center;
+    font-family: "Redwing";
+}
+
+.overcome-limitation_content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.new-in {
+    text-align: center;
+    left: 50%;
+    font-family: "Redwing";
+    padding-top: 30px;
+}
+
+.new-in_content {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.product-one_image {
+    width: 250px;
+    height: 305px;
+}
+ .product-one_image:hover {
+    width: 270px;
+    height: 325px;
+    transition-duration: 0.6s;
+ }
+
+.reviews {
+    padding: 80px 0px;
+    text-align: center;
+    left: 50%;
+}
+
+.reviews_content {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.review_info p {
+    display: inline-block;
+    justify-content: center;
+} 
+
+.quote_image-one {
+    background-image: url("../images/review-image-hipster.jpg");
+    background-size: cover;
+    background-position-x: -80px;
+    width: 300px;
+    height: 350px;
+    color: #113a3a;
+    border-radius: 10px;
+}
+
+.quote_image-two {
+    background-image: url("../images/handsome-man-exercising-park-sports-wear.jpg");
+    background-size: cover;
+    background-position-x: -130px;
+    width: 300px;
+    height: 350px;
+    color: #113a3a;
+    border-radius: 10px;
+}
+
+.quote_image-three {
+    background-image: url("../images/image00001.jpeg");
+    background-size: cover;
+    background-position-x: -80px;
+    position: inherit;
+    width: 300px;
+    height: 350px;
+    color: white;
+    border-radius: 10px;
+}
+/*Jackets html Page*/
+@font-face {
+    font-family: "Redwing";
+    src: url("../fonts/Redwing-Light.otf") format("truetype");
+}
+
+.jackets h1 {
+    text-align: center;
+}
+
+.jackets h2 {
+    padding-left: 10%;
+}
+
+.jackets_content-one ,
+.jackets_content-two {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.jackets_content {
+    display: flex;
+}
+
+.price-buy {
+    justify-content: right;
+    padding-left: 50px;
+    padding-top: 10px;
+}
+
+.cta_product-one {
+    background-color: #0D6868;
+    color: white;
+    text-align: center;
+}
+
+/*Jackets Page*/ 
+
+.jacket_image {
+    width: 350px;
+    height: auto;
+    padding-left: 15px;
+}
+
+.cta_buy-it {
+    background-color: #0D6868;
+    color: #c4c4c4;
+    padding: 10px;
+}
+
+.cta_buy-it:hover {
+    background-color: #c4c4c4;
+    color: #0D6868;
+    padding: 12px;
+}
