@@ -1,0 +1,32 @@
+
+main {
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.account {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    flex-wrap: wrap;
+    text-align: left;
+    padding-left: 30%;
+}
+
+.inputs {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    background-color: #0D6868;
+    color: white;
+    width: 500px;
+}
+
+.input-cta {
+    padding-top: 15px;
+    justify-content: center;
+    padding-right: 45%;
+}

@@ -1,0 +1,48 @@
+.contact_content {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+main {
+  padding: 80px 30px 100px 30px;
+}
+
+input,
+select, 
+.message ,
+fieldset, 
+textarea {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  margin: 10px 10px 10px 0px;
+  padding: 10px;
+}
+
+.message {
+  padding-right: 5px;
+}
+
+.textarea {
+  display: inline-flex;
+  width: 300px;
+}
+
+.users_message {
+  display: flex;
+  flex-direction: column;
+}
+.contact_form {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.contact_content {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.post {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

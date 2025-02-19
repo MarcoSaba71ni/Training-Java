@@ -1,0 +1,12 @@
+main {
+    justify-content: center;
+    text-align: center;
+    top: 50%;
+}
+
+.image_logo2 {
+    width: 300px;
+    height: auto;
+    filter: brightness(350%);
+    padding: 40px 0px 300px 0;
+}
