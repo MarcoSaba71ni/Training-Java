@@ -1,112 +1,105 @@
- async function fetchProducts() {
+// Fetching products from API
+
+async function fetchProducts() {
     try {
         const response = await fetch("https://v2.api.noroff.dev/rainy-days");
         if (!response.ok) {
-          throw new Error("Can't fetch")};
- 
+            throw new Error("Can't fetch")
+        };
+
         const data = await response.json();
-       console.log(data);
+        const allJackets = JSON.stringify(data.data);
+        console.log(allJackets);
     } catch (error) {
         console.error("Error fetching products:", error);
     }
-} 
+}
+
+fetchProducts();
 
 // Replacing rendered HTML Content for Js
-// equivalent id & classes from tutorial
-// class: card-container = jackets_content
+// Three functions
+// 1. generateJackets(): generates the HTML
+// 2. displayJackets(): loop through the data rendering div's 
+//      according to the jackets info
+// 3. main()
 //
 
-/* 
 const displayContainer = document.getElementById('display-container');
-console.log(displayContainer); // The result is null because we didn't fetch the elements yet.
 
-function generateJackets () {
-    const displayContainer = document.getElementById("display-container");
-    displayContainer.innerHTML = ""; 
+function generateJackets(data) {
+        const displayJacket = document.createElement('div');
+        displayJacket.classList.add('products');
 
-    const productDiv = document.createElement('div');
-    productDiv.classList.add('products');
+        // Image inside a link
+        const jacketLink = document.createElement('a');
+        jacketLink.href = jacket.link; // I guess there is a problem as I dont have the link for the Products
+        const jacketImage = document.createElement('img');
+        jacketImage.src = jacket.image;
+        jacketImage.classList.add('product-one_image');
+        jacketLink.appendChild(jacketImage);
 
-    const productLink = document.createElement('a');
-    productLink.href = jacket.link;
+        // Jacket content div
+        const jacketContent = document.createElement('div');
+        jacketContent.classList.add('jackets_content');
 
-    const productImage = document.createElement('img');
-    productImage.src = jacket.image
-    productImage.classList.add('product-one_image');
+        // Heading and description
+        const jacketHeadAndDesc = document.createElement('div');
+        const jacketHeading = document.createElement('h2');
+        jacketHeading.textContent = jacket.title; 
+        const jacketDesc = document.createElement('p');
+        jacketDesc.textContent = jacket.description; 
+        jacketHeadAndDesc.appendChild(jacketHeading);
+        jacketHeadAndDesc.appendChild(jacketDesc);
 
-    productLink.appendChild(productImage);
+        // Price and Buy button
+        const jacketPriceBuy = document.createElement('div');
+        jacketPriceBuy.classList.add('price-buy');
+        const jacketPrice = document.createElement('p');
+        jacketPrice.textContent = "€" + jacket.price; 
+        const buyLink = document.createElement('a');
+        buyLink.href = jacket.link;
+        buyLink.textContent = "Buy it"; // FIXED
+        buyLink.classList.add('cta_product-one');
+
+        jacketPriceBuy.appendChild(jacketPrice);
+        jacketPriceBuy.appendChild(buyLink);
+
+        // Append all sections
+        jacketContent.appendChild(jacketHeadAndDesc);
+        jacketContent.appendChild(jacketPriceBuy);
+        displayJacket.appendChild(jacketLink); 
+        displayJacket.appendChild(jacketContent);
+
+        // Append final jacket to display container
+        document.getElementById('display-container').appendChild(displayJacket);
+
+        return displayJackets;
+        }
 
 
-    const jacketContent = document.createElement('div');
-    jacketContent.classList.add("jackets_content");
-
-    const jacketsHeadingAndDescription = document.createElement("div");
-    const jacketHeading = document.createElement('h2');
-    jacketHeading.textContent = jacket.name;
-
-    const jacketDescription = document.createElement("p");
-    jacketDescription.textContent = "Water Proof";
-
-    jacketsHeadingAndDescription.appendChild(jacketHeading);
-    jacketsHeadingAndDescription.appendChild(jacketDescription);
-
-    const priceAndBuy = document.createElement('div');
-    priceAndBuy.classList.add('price-buy');
-    const priceJacket = document.createElement('p');
-    priceJacket.textContent = jacket.price;
-    const buyLink = document.createElement("a");
-    buyLink.href = jacket.link;
-    buyLink.textContent = "Buy it."
-    buyLink.classList.add('cta_product-one');
-
-    priceAndBuy.appendChild(priceJacket);
-    priceAndBuy.appendChild(buyLink);
-
-    jacketContent.appendChild(jacketsHeadingAndDescription);
-
-    productDiv.appendChild(jacketContent);
-    productDiv.appendChild(priceAndBuy);
-
+function displayJackets (data) {
+    displayJacket.textContent = " ";//Clears the previous line of code
+    for (let i = 0; i < data.length; i++) {
+        const jacketHtml = generateJackets(data[i]);
+        displayJackets.append(jacketHtml);
     }
-*/
-
-
-/*
-<div id="display-container" class="products">
-    <a href="products/jacket-five.html"><img src="images/RainyDays_Jacket5.jpg" class="product-one_image"></a>
-        <div class="jackets_content">
-            <div>
-                <h2>George</h2>
-                <p>Water Proof</p>
-            </div>
-            <div class="price-buy">
-                <p>€120</p>
-                <a href="products/jacket-five.html" class="cta_product-one">Buy it</a>
-            </div>
-        </div>
-</div>
-*/    
-    
 }
 
-function displayCards () {
-     for (let i = 0; i < data.length; i++) {
-        console.log(data[i]);
-     }
+function main() {
+    displayJackets(data);   
+    console.log('Main is working and will be used later one!');
 }
 
-function main () {
-    
-}
 
-//
+
 
 
 
 
 console.log("HI");
 
-function main () {
+function main() {
     console.log('mains is working');
 }
 
