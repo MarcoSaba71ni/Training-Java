@@ -268,9 +268,13 @@ footer {
 .jackets_content-one ,
 .jackets_content-two {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 50px;
+    flex-wrap: wrap;
+    width: 280px;
+}
+
+.products {
+    display: flex;
     flex-wrap: wrap;
 }
 
