@@ -1,6 +1,4 @@
-
- let apiUrl = "https://v2.api.noroff.dev/rainy-days"; // API URL
-
+/*
 // Fetch API Data
 async function fetchSingleProduct() {
     try {
@@ -21,6 +19,7 @@ fetchSingleProduct();
 // Find the matching jacket by ID
 function showDetail(jackets) {
     const jacketId = new URLSearchParams(window.location.search).get("id");
+
 
     const jacket = jackets.find(jacket => jacket.Id === jacketId);
 
@@ -53,11 +52,98 @@ function generateSingleJacket(jacket) {
             <p class="jacket-price">€${jacket.price}</p>
             <button class="add-to-cart">Add to Cart</button>
         </div>
+        `product.html?id=${jacket.id}`
+
     `;*/
 
 
-// Display the generated jacket HTML in the DOM
-function displaySingleJacket(jacketHTML) {
-   }
+
+/*    
+async function fetchSingleProduct() {
+    const response = await fetch(`https://docs.noroff.dev/docs/v2/e-commerce/rainy-days#single-product`);
+    const data = await response.json();
+    const jackets = data.data;
+    displaySingleJacket();
+
+} // A function to fetch any data according to the url
+
+fetchSingleProduct();
 
 
+
+const parameterString = window.location.search;
+const searchParameters = new URLSearchParams(parameterString);
+const productId = searchParameters.get("id");
+
+
+
+
+function createJacketDetail(jackets) {
+
+    const productContainer = document.getElementById('product-container');
+
+    const jacketDetail = document.createElement("div");
+    const jacketName = document.createElement("h2");
+    jacketName.textContent = jacket.title;
+
+    jacketDetail.appendChild(jacketName);
+    productContainer.appendChild(jacketDetail);
+}
+
+function displaySingleJacket() {
+
+}
+
+
+*/
+
+
+const parameterString = window.location.search;
+const searchParameters = new URLSearchParams(parameterString);
+const productId = searchParameters.get("id");
+
+async function fetchSingleProduct() {
+    try {
+        const response = await fetch(`https://api.noroff.dev/api/v1/rainy-days/${productId}`);
+        const jacket = await response.json(); 
+        displaySingleJacket(jacket);
+    } catch (error) {
+        console.error("Error fetching jacket details:", error);
+    }
+}
+
+function displaySingleJacket(jacket) {
+    const productContainer = document.getElementById("product-container");
+
+    if (!productContainer) {
+        console.error("Product container not found");
+        return;
+    }
+
+    productContainer.innerHTML = ""; // Clear previous content
+
+    const jacketDetail = document.createElement("div");
+    jacketDetail.classList.add("jacket-detail");
+
+    const jacketName = document.createElement("h2");
+    jacketName.textContent = jacket.title;
+
+    const jacketImage = document.createElement("img");
+    jacketImage.src = jacket.image;
+    jacketImage.alt = jacket.title;
+
+    const jacketDescription = document.createElement("p");
+    jacketDescription.textContent = jacket.description;
+
+    const jacketPrice = document.createElement("p");
+    jacketPrice.textContent = `Price: $${jacket.price}`;
+
+    jacketDetail.appendChild(jacketName);
+    jacketDetail.appendChild(jacketImage);
+    jacketDetail.appendChild(jacketDescription);
+    jacketDetail.appendChild(jacketPrice);
+    productContainer.appendChild(jacketDetail);
+}
+
+// Call the fetch function to start the process
+fetchSingleProduct();

@@ -57,17 +57,12 @@ function generateJacketHTML(jacket) {
     addToCartBtn.classList.add("add-to-cart-button");
     addToCartBtn.textContent = "Add to cart";
     const buyItBtn = document.createElement("a");
-    buyItBtn.href = "product.html?id=${jacket.id}";
+    buyItBtn.href = `product.html?id=${jacket.id}`;
     buyItBtn.classList.add("cta_product-one");
     buyItBtn.textContent= "Buy It"
 
     displayContainer.appendChild(addToCartBtn);
     displayContainer.appendChild(buyItBtn);
-    
-    
-
-    // Append to the container instead of replacing content
-
 }
 
 
