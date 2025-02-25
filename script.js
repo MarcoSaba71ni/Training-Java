@@ -7,29 +7,33 @@ async function fetchProducts() {
         };
 
         const data = await response.json();
-        const allJackets = data.data; //  remove stringify, we need it as an array and not a string
+        const allJackets = data.data; 
         console.log(allJackets);
-        displayJackets(allJackets);// call displayJackets, pass in allJackets as a parameter
+        displayJackets(allJackets);
+        filteredJackets = allJackets;
     } catch (error) {
         console.error("Error fetching products:", error);
     }
 }
 
-fetchProducts(); // call it so that it can execute
+fetchProducts(); 
 
-/* Replacing rendered HTML Content for JS - no need for main()
-    1.fetchProducts(): fetches API data about jackets, once fetched it calls displayJackets()
-    2. displayJackets(): loop through the data rendering div's according to the jackets info and calls generateJacketHTML()
-    3. generateJackets(): generates the HTML
-*/
+let filteredJackets = [];
+
+const searchBar = document.getElementById("search-bar");
+searchBar.addEventListener ('input', event => {
+    event.preventDefault()
+    const term = event.target.value.toLowerCase()
+    let searchResult = filteredJackets.filter(filteredJacket => {
+        return filteredJacket.name.toLowerCase().includes(term)
+    })
+    displayJackets(searchResult)
+})
 
 function generateJacketHTML(jacket) {
 
     const displayContainer = document.getElementById('display-container');
     displayContainer.classList.add('jackets_content-one');
-
-
-    // Create a new div for the jacket
     
     const jacketContainer = document.createElement('div');
     const jacketImage = document.createElement('img');
@@ -55,6 +59,7 @@ function generateJacketHTML(jacket) {
     const addToCartBtn = document.createElement("button");
     addToCartBtn.classList.add("cta_product-one");
     addToCartBtn.classList.add("add-to-cart-button");
+    addToCartBtn.addEventListener("click", () => addToCart(jacket.id));
     addToCartBtn.textContent = "Add to cart";
     const buyItBtn = document.createElement("a");
     buyItBtn.href = `product.html?id=${jacket.id}`;
@@ -65,15 +70,99 @@ function generateJacketHTML(jacket) {
     displayContainer.appendChild(buyItBtn);
 }
 
-
- // Function to loop through and display jackets
 function displayJackets(jacketData) {
     for (let i = 0; i < jacketData.length; i++) {
-        const jacket = jacketData[i]; // set jacket[i] against a variable to make it easy to understand
-        console.log(jacket.title); // Verify each title in console
-        generateJacketHTML(jacket); // Generate HTML for each jacket
+        const jacket = jacketData[i]; 
+        console.log(jacket.title); 
+        generateJacketHTML(jacket);
     }
 }
 
-// Rendering each Jacket Page Individually.
+
+// My Cart Page
+
+
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// A function that finds a jacket on the cart storage. 
+
+function addToCart(jacketId) {
+    const jackets = jackets.find(jacket => jacket.id === jacketId);
+    const itemInCart = cart.find(item => item.id === jacketId);
+
+    if (itemInCart) {
+        itemInCart.quantity++;
+    } else {
+        cart.push({...productId, quantity: 1})
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartCount ();
+}
+
+function updateCartCount() {
+    const cartCount = document.getElementById("cartCount");
+
+    let totalQuantity = 0;
+
+    for (let item of cart ) {
+        totalQuantity += item.quantity;
+    }
+
+    cartCount.textContent = totalQuantity;
+} 
+// Displaying the selected items.
+const cartContainer = document.getElementById("cardContainer");
+const totalPriceElement = document.getElementById("totalPrice");
+
+function displayCart () {
+    cartContainer.innerHTML = "";
+    
+    if (cart.length === 0) {
+        cartContainer.innerHTML= "<p>Your cart is empty!</p>"
+        return;
+    }
+
+    let totalPrice = 0;
+
+    cart.forEach(item => {
+        const price = item.price * item.quantity;
+        totalPrice += price; // totalPrice = totalPrice + price;
+
+        cartContainer.innerHTML += `
+         <div class="cartItem">
+        <img src=${item.image} alt=${item.name}>
+        <h3>${item.name}</h3>
+        <p>$${item.price} x ${item.quantity} = $${price.toFixed(2)}</p>
+        <button onclick="removeFromCart(${item.id})">Remove</button>
+      </div>
+        `;
+    });
+
+    totalPriceElement.textContent = totalPrice.toFixed(2);
+}
+
+    displayCart();
+// Removes items from the cart if found a jacket with the specific id.
+    function removeFromCart(jacketId) {
+        cart = cart.filter(item => item.id !== jacketId);
+
+        updateCartCount();
+        displayCart();
+    }
+
+    const emptyCartButton = document.getElementById("emptyCart");
+
+    emptyCartButton.addEventListener("click", () => {
+        cart = [];
+        updateCartCount();
+        displayCart();
+    });
+
+    // 
+function addToCart(productId) {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+}
 
