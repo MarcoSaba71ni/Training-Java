@@ -1,3 +1,4 @@
+let filteredJackets = [];
 
 async function fetchProducts() {
     try {
@@ -11,6 +12,7 @@ async function fetchProducts() {
         console.log(allJackets);
         displayJackets(allJackets);
         filteredJackets = allJackets;
+        console.log(filteredJackets);
     } catch (error) {
         console.error("Error fetching products:", error);
     }
@@ -18,14 +20,14 @@ async function fetchProducts() {
 
 fetchProducts(); 
 
-let filteredJackets = [];
+
 
 const searchBar = document.getElementById("search-bar");
 searchBar.addEventListener ('input', event => {
     event.preventDefault()
     const term = event.target.value.toLowerCase()
     let searchResult = filteredJackets.filter(filteredJacket => {
-        return filteredJacket.name.toLowerCase().includes(term)
+        return filteredJacket.title.toLowerCase().includes(term)
     })
     displayJackets(searchResult)
 })
